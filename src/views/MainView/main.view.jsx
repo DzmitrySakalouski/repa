@@ -7,7 +7,6 @@ export const MainView = (props) => {
   const isAuthenticated = false;
 
   return (
-    <div className="main">
       <Router>
         <Switch>
           <Route path="/login" component={AuthView} />
@@ -19,6 +18,5 @@ export const MainView = (props) => {
           />
         </Switch>
       </Router>
-    </div>
   );
 };

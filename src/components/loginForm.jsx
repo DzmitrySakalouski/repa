@@ -43,7 +43,7 @@ export const LoginForm = (props) => {
         <Typography component="h6">Вход</Typography>
         <TextField
           id="standard-disabled"
-          label="Логин"
+          label="Логин (Email)"
           className={classes.input}
           value={email}
         />

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Typography, TextField, Paper, Button } from "@material-ui/core";
 import { COLORS } from "../constants/colors";
+import { useDispatch } from "react-redux";
+import { signUp } from "../store/actions/User/actions/user.actions";
 
 const useStyles = makeStyles({
   form: {
@@ -27,9 +29,35 @@ const useStyles = makeStyles({
 export const SignUpForm = (props) => {
   const { loginPress } = props;
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+
+  const dispatch = useDispatch();
 
   const classes = useStyles();
+
+  const handleCreateAccount = () => {
+    if (!email && !name) return;
+    if (isPasswordValid()) {
+      const userData = {
+        email,
+        name,
+        password
+      }
+
+      dispatch(signUp(userData));
+    }
+  };
+
+  const isPasswordValid = () => {
+    return (
+      password &&
+      passwordConfirm &&
+      password === passwordConfirm &&
+      password.length > 6
+    );
+  };
 
   return (
     <Paper elevation={4}>
@@ -37,9 +65,17 @@ export const SignUpForm = (props) => {
         <Typography component="h6">Регистрация</Typography>
         <TextField
           id="standard-disabled"
-          label="Логин"
+          label="Имя"
+          className={classes.input}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <TextField
+          id="standard-disabled"
+          label="Email"
           className={classes.input}
           value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <TextField
           id="standard-password-input"
@@ -48,6 +84,7 @@ export const SignUpForm = (props) => {
           autoComplete="current-password"
           className={classes.input}
           value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <TextField
           id="standard-password-input"
@@ -55,9 +92,15 @@ export const SignUpForm = (props) => {
           type="password"
           autoComplete="current-password"
           className={classes.input}
-          value={password}
+          value={passwordConfirm}
+          onChange={(e) => setPasswordConfirm(e.target.value)}
         />
-        <Button className={classes.button} variant="contained" color="primary">
+        <Button
+          className={classes.button}
+          onClick={handleCreateAccount}
+          variant="contained"
+          color="primary"
+        >
           Создать аккаунт
         </Button>
       </Box>

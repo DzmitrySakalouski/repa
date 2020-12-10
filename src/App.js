@@ -6,10 +6,6 @@ import { Provider } from "react-redux";
 import { appStore } from "./store";
 
 function App() {
-  useEffect(() => {
-    initApp();
-  }, []);
-
   return (
     <Provider store={appStore}>
       <div className="App">

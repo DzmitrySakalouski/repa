@@ -10,12 +10,9 @@ export const logIn = (data) => {
 };
 
 export const logOut = () => {
-  firebase
+  return firebase
     .auth()
-    .signOut()
-    .then(() => {
-      console.log("SIGN_OUT");
-    });
+    .signOut();
 };
 
 export const addNewUser = userData => {

@@ -39,6 +39,7 @@ export const LoginForm = (props) => {
   const classes = useStyles();
 
   const handleLogin = () => {
+    if (!email || !password) return;
     logIn({email, password});
   }
 
@@ -62,7 +63,7 @@ export const LoginForm = (props) => {
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
-        <Button className={classes.button} variant="contained" color="primary">
+        <Button onClick={handleLogin} className={classes.button} variant="contained" color="primary">
           Войти
         </Button>
       </Box>

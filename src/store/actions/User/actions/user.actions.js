@@ -1,4 +1,4 @@
-import { addNewUser, sighUp } from "../../../../services/auth.service";
+import { addNewUser, logOut, sighUp } from "../../../../services/auth.service";
 import { GET_USER, SET_UID } from "../types/user.types";
 import firebase from "firebase";
 import { getPersonalDataDoc } from "../../../../services/user.service";
@@ -52,3 +52,9 @@ export const getUserPersonalData = (uid) => (dispatch) => {
     }
   });
 };
+
+export const signOut = () => dispatch => {
+  logOut().then(() => {
+    dispatch(setUser({}));
+  })
+}

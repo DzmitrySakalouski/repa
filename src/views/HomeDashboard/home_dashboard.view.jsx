@@ -11,7 +11,7 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { COLORS } from "../../constants/colors";
-import { getUserPersonalData } from "../../store/actions/User/actions/user.actions";
+import { getUserPersonalData, signOut } from "../../store/actions/User/actions/user.actions";
 
 const useStyles = makeStyles({
   title: {
@@ -50,7 +50,7 @@ export const HomeDashboard = (props) => {
   };
 
   const handleLogout = () => {
-      console.log("LOGOUT");
+      dispatch(signOut());
       handleClose();
   }
 

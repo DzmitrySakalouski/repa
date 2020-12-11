@@ -62,7 +62,7 @@ export const HomeDashboard = (props) => {
         <Typography className={classes.title}>JAM STUDIOS</Typography>
         {
             user.isAdmin &&
-            <Link>
+            <Link to="/admin">
                 <BuildIcon color="inherit" />
             </Link>
         }

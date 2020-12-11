@@ -11,6 +11,7 @@ import firebase from "firebase";
 import { useDispatch, useSelector } from "react-redux";
 import { setUID } from "../../store/actions/User/actions/user.actions";
 import { Splash } from "../../components/splash";
+import { AdminView } from "../Admin";
 
 export const MainView = (props) => {
   const { user } = useSelector((state) => state.user);
@@ -41,6 +42,7 @@ export const MainView = (props) => {
     <Router>
       <Switch>
         <Route path="/login" component={AuthView} />
+        <Route path="/admin" component={AdminView} />
         <PrivateRoute
           path="/"
           exact

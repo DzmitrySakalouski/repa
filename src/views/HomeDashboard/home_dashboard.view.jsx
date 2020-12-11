@@ -3,7 +3,7 @@ import React from 'react'
 export const HomeDashboard = props => {
     return (
         <div>
-            Home
+            Homejk;jlkj
         </div>
     )
 }

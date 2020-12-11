@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box, Typography, TextField, Paper, Button } from "@material-ui/core";
 import { COLORS } from "../constants/colors";
+import { logIn } from "../services/auth.service";
 
 const useStyles = makeStyles({
   root: {
@@ -37,6 +38,10 @@ export const LoginForm = (props) => {
 
   const classes = useStyles();
 
+  const handleLogin = () => {
+    logIn({email, password});
+  }
+
   return (
     <Paper elevation={4}>
       <Box className={classes.form}>
@@ -46,6 +51,7 @@ export const LoginForm = (props) => {
           label="Логин (Email)"
           className={classes.input}
           value={email}
+          onChange={e => setEmail(e.target.value)}
         />
         <TextField
           id="standard-password-input"
@@ -54,6 +60,7 @@ export const LoginForm = (props) => {
           autoComplete="current-password"
           className={classes.input}
           value={password}
+          onChange={e => setPassword(e.target.value)}
         />
         <Button className={classes.button} variant="contained" color="primary">
           Войти

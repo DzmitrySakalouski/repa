@@ -1,9 +1,14 @@
 import { addNewUser, sighUp } from "../../../../services/auth.service";
-import { GET_USER } from "../types/user.types";
+import { GET_USER, SET_UID } from "../types/user.types";
 import firebase from "firebase";
 
 export const setUser = (payload) => ({
   type: GET_USER,
+  payload,
+});
+
+export const setUID = (payload) => ({
+  type: SET_UID,
   payload,
 });
 
@@ -15,15 +20,16 @@ export const signUp = (data) => (dispatch) => {
     .then((user) => {
       console.log(user);
 
+      const currentUser = firebase.auth().currentUser;
+
       const dataToSave = {
         isAdmin: false,
         isBandAdmin: false,
         isVerified: true,
         name,
         email,
+        uid: currentUser.uid,
       };
-
-      const currentUser = firebase.auth().currentUser;
 
       addNewUser(dataToSave, currentUser.uid).then(() =>
         dispatch(

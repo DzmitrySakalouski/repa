@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { LoginForm } from "../../components/loginForm";
 import { COLORS } from "../../constants/colors";
 import { SignUpForm } from "../../components/signUpForm";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles({
   root: {
@@ -17,16 +18,15 @@ const useStyles = makeStyles({
 });
 
 export const AuthView = (props) => {
-  const isAuthenticated = false;
   const classes = useStyles();
-
   const [loginVisible, setLoginVisible] = useState(true);
+  const {user} = useSelector(state => state.user);
 
   const navigateToRegister = () => setLoginVisible(false);
 
   const navigateToLogin = () => setLoginVisible(true);
 
-  if (isAuthenticated) {
+  if (user.uid) {
     return <Redirect to="/" />;
   }
   return (

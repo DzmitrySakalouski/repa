@@ -1,6 +1,7 @@
 import { addNewUser, sighUp } from "../../../../services/auth.service";
 import { GET_USER, SET_UID } from "../types/user.types";
 import firebase from "firebase";
+import { getPersonalDataDoc } from "../../../../services/user.service";
 
 export const setUser = (payload) => ({
   type: GET_USER,
@@ -39,4 +40,15 @@ export const signUp = (data) => (dispatch) => {
         )
       );
     });
+};
+
+export const getUserPersonalData = (uid) => (dispatch) => {
+  const userDoc = getPersonalDataDoc(uid);
+  userDoc.get().then((doc) => {
+    if (doc.exists) {
+      console.log(doc.data());
+    } else {
+      console.log("ERRoR");
+    }
+  });
 };

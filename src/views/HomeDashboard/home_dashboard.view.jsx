@@ -10,8 +10,10 @@ import {
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { COLORS } from "../../constants/colors";
 import { getUserPersonalData, signOut } from "../../store/actions/User/actions/user.actions";
+import BuildIcon from '@material-ui/icons/Build';
 
 const useStyles = makeStyles({
   title: {
@@ -58,6 +60,12 @@ export const HomeDashboard = (props) => {
     <AppBar position="static">
       <Toolbar classes={{ root: classes.toolbar }}>
         <Typography className={classes.title}>JAM STUDIOS</Typography>
+        {
+            user.isAdmin &&
+            <Link>
+                <BuildIcon color="inherit" />
+            </Link>
+        }
         <IconButton color="inherit" onClick={toggleMenu}>
           <AccountCircle />
         </IconButton>

@@ -46,7 +46,7 @@ export const getUserPersonalData = (uid) => (dispatch) => {
   const userDoc = getPersonalDataDoc(uid);
   userDoc.get().then((doc) => {
     if (doc.exists) {
-      console.log(doc.data());
+      dispatch(setUser(({...doc.data(), uid: doc.id})));
     } else {
       console.log("ERRoR");
     }
